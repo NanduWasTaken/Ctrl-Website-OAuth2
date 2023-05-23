@@ -12,7 +12,7 @@ const auth1 = require("./routes/auth.js");
 const home21 = require("./routes/home.js");
 
 const app = express();
-const sessionStore = new MongoStore({ mongoUrl: process.env.uriDb });
+const sessionStore = new MongoStore({ mongoUrl: process.env.dbUri });
 
 
 // Session Handling
