@@ -7,6 +7,14 @@ const user = require('./../models/user.js')
 
 const login_error = encodeURIComponent('You Need To Login First.');
 
+const profile_error = encodeURIComponent('Error Code: Profile Fail')
+
+const lb_error = encodeURIComponent('Error Code: LB Fail')
+
+
+const data_error = encodeURIComponent('Error Code: Data Fail')
+
+
 router.get('/', async function(req, res) {
   var message = req.query.message;
   try {
@@ -17,7 +25,7 @@ router.get('/', async function(req, res) {
     const exist = await user.findOne({ discordId: req.user.discordId });
 
     if (!exist) {
-      return res.send('An Error Has Occurred. Please Contact the Website Admin');
+      return res.send(`/?message=${data_error}`);
     }
 
     // Retrieve the data from the found document
@@ -28,7 +36,7 @@ router.get('/', async function(req, res) {
 
   } catch (err) {
     console.log(err);
-    res.send('An Error Has Blocked Your Way. Contact the Website Admin');
+    res.redirect(`/?message=${profile_error}`);
   }
 });
 
@@ -51,7 +59,7 @@ router.get('/leaderboard', async (req, res) => {
     res.render(`${__dirname}/../views/board.ejs`, { users   })
   } catch (err) {
     console.log(err)
-    res.send('error occurred contact Website Admin')
+    res.redirect(`/home?message=${lb_error}`)
 
   }
 });
