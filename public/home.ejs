@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Ctrl Profile</title>
+  <style>
+    body {
+      background-color: #333333; /* Dark black */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      animation: backgroundAnimation 10s infinite;
+    }
+    
+    @keyframes backgroundAnimation {
+      0% { background-color: #000000; }
+      50% { background-color: #333333; }
+      100% { background-color: #000000; }
+    }
+    
+    h1 {
+      color: #FFF;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+   
+    
+    .profile-card {
+      background-color: #333333;
+      position: relative;        /* Dark black */
+      color: #FFF;
+      width: 400px;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      border: 2px solid #FFF; /* White border */
+    }
+    
+    h1 {
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    
+    .user-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #FFF; /* White border */
+      margin-bottom: 20px;
+    }
+.profile-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  background-color: #80E27E; /* Initial color */
+  color: #333333; /* Dark gray color */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 1s ease-in-out;
+  animation: colorChangeAnimation 10s infinite;
+}
+
+@keyframes colorChangeAnimation {
+  0% {
+    background-color: #80E27E; /* Initial color */
+  }
+  14.28% {
+    background-color: #E27E7E; /* Color 1 */
+  }
+  28.56% {
+    background-color: #E2BC7E; /* Color 2 */
+  }
+  42.84% {
+    background-color: #BCE27E; /* Color 3 */
+  }
+  57.12% {
+    background-color: #7EE27E; /* Color 4 */
+  }
+  71.4% {
+    background-color: #7EE2BC; /* Color 5 */
+  }
+  85.68% {
+    background-color: #7E9CE2; /* Color 6 */
+  }
+  100% {
+    background-color: #E27EE2; /* Color 7 */
+  }
+}
+
+    
+    p {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .button {
+       display: inline-block;
+       padding: 10px 20px;
+       background-color: #9575CD;
+       color: #FFF;
+       font-family: Arial, sans-serif;
+       font-size: 16px;
+       border: none;
+       border-radius: 5px;
+       cursor: pointer;
+       transition: background-color 0.3s;
+       margin: 5px;
+       width: 110px; 
+    }
+    
+    .button:hover {
+      background-color: #7E57C2; /* Hover color */
+    }
+    
+    .button:active {
+      background-color: #FFF; /* White color */
+      color: #000; /* Black color */
+      transform: translateY(2px);
+    }
+    
+    .copyright {
+      color: #FFF;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      position: fixed;
+      bottom: 0;
+      padding: 10px;
+      background-color: #9575CD;
+      width: 100%;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  
+  <h1>Extra Ctrl Profile</h1>
+  <div class="profile-card">
+
+    <% if (userData.ctrl) { %>
+    <div class="profile-badge">Ctrl</div>
+    <% } %> 
+    
+    <img src="<%= userData.avatar %>?size=1024" alt="User Image" class="user-image">
+    <h1><%= userData.global_name %></h1>
+    <p><%= userData.username %>#<%= userData.discriminator %></p>
+    <p>You Are On <%= userData.guilds.length %> Servers!</p>
+    
+    
+    <div class="button-container">
+  <a href="/home/leaderboard" class="button">LeaderBoard</a>
+  <a href="https://underctrl.io" class="button">Avrajs Adress</a>
+  <a href="/home/data" class="button">Delete My Data</a>
+  <a href="/api/logout" class="button">Logout</a>
+</div>
+  </div>
+  
+  <div class="copyright">
+    &copy; Nandu 2023. All Rights Reserved.
+  </div>
+</body>
+</html>

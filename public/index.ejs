@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Extra Ctrl OAuth2</title>
+  <style>
+    body {
+      background-color: #333333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      animation: backgroundAnimation 10s infinite;
+    }
+    
+    @keyframes backgroundAnimation {
+      0% { background-color: #000000; }
+      50% { background-color: #333333; }
+      100% { background-color: #000000; }
+    }
+    
+    h1 {
+      color: #FFF;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #9575CD;
+      color: #FFF;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .button:hover {
+      background-color: #7E57C2;
+    }
+    
+    .button:active {
+      background-color: #FFF;
+      color: #000;
+      transform: translateY(2px);
+    }
+    
+    .clicked {
+      background-color: #FFF;
+      color: #000;
+    }
+    
+    .clicked:hover {
+      background-color: #7E57C2;
+      color: #FFF;
+    }
+    
+    .clicked:active {
+      background-color: #FFF;
+      color: #000;
+      transform: translateY(2px);
+    }
+    
+    .popup {
+      position: fixed;
+      bottom: 70px; /* Adjusted position */
+      right: 20px; /* Moved to the bottom right */
+      background-color: #9575CD;
+      color: #FFF;
+      padding: 20px; /* Increased padding for larger size */
+      border-radius: 5px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    .popup-message {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      font-size: 20px; /* Increased font size */
+    }
+    
+    .popup-button {
+      background-color: #7E57C2;
+      color: #FFF;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .popup-button:hover {
+      background-color: #9575CD;
+    }
+    
+    .copyright {
+      color: #FFF;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      position: fixed;
+      bottom: 0;
+      padding: 10px;
+      background-color: #9575CD;
+      width: 100%;
+      text-align: center;
+      z-index: 1; /* Ensures the copyright stays on top */
+    }
+  </style>
+</head>
+<body>
+  <h1>Extra Ctrl OAuth2</h1>
+  
+  <% if (!login) { %>
+  <a href="/api/discord" class="button" onclick="animateButton()">Login With Discord</a>
+  <% } else { %>
+   <a href="/home" class="button" onclick="animateButton()">Go To Profile</a>
+  <% } %>
+  
+  <% if (message) { %>
+  <div class="popup" id="popup">
+    <p class="popup-message"><%= message %></p>
+    <button class="popup-button" onclick="closePopup()">OK</button>
+  </div>
+<% } %>
+ 
+  <div class="copyright">
+    &copy; Nandu 2023. All Rights Reserved.
+  </div>
+  
+  <script>
+    function animateButton() {
+      var button = document.querySelector('.button');
+      button.classList.add('clicked');
+      var popup = document.getElementById('popup');
+      popup.style.display = none;
+    
+      setTimeout(function() {
+        button.classList.remove('clicked');
+      }, 500);
+      
+      showPopup();
+    }
+    
+    function showPopup() {
+      var popup = document.getElementById('popup');
+      popup.style.display = 'block';
+    }
+    
+    function closePopup() {
+      var popup = document.getElementById('popup');
+      popup.style.display = 'none';
+    }
+  </script>
+</body>
+  </html>
+  

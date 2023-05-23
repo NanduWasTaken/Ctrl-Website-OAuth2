@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Extra Ctrl LeaderBoard</title>
+  <style>
+    body {
+      background-color: #333333;
+      color: #777777;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      animation: backgroundAnimation 10s infinite;
+      font-family: "Roboto", sans-serif;
+    }
+    
+    
+    @keyframes backgroundAnimation {
+      0% { background-color: #000000; }
+      50% { background-color: #333333; }
+      100% { background-color: #000000; }
+    }
+    
+    .user-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    
+    .user-card {
+  background-color: #FFF;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 15px;
+  width: 200px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  font-family: "Roboto", sans-serif;
+}
+
+.user-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #9575CD;
+}
+
+.ranking {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background-color: #9575CD;
+  color: #FFF;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.username {
+  font-size: 18px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.discriminator {
+  font-size: 14px;
+  color: #777777;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.guilds {
+  font-size: 16px;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+
+    .footer {
+      color: #FFF;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      position: fixed;
+      bottom: 0;
+      padding: 10px;
+      background-color: #9575CD;
+      width: 100%;
+      text-align: center;
+      z-index: 1;
+    }
+    .profile-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: #80E27E; /* Initial color */
+    color: #333333; /* Dark gray color */
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 1s ease-in-out;
+    animation: colorChangeAnimation 10s infinite;
+    }
+    @keyframes colorChangeAnimation {
+  0% {
+    background-color: #80E27E; /* Initial color */
+  }
+  14.28% {
+    background-color: #E27E7E; /* Color 1 */
+  }
+  28.56% {
+    background-color: #E2BC7E; /* Color 2 */
+  }
+  42.84% {
+    background-color: #BCE27E; /* Color 3 */
+  }
+  57.12% {
+    background-color: #7EE27E; /* Color 4 */
+  }
+  71.4% {
+    background-color: #7EE2BC; /* Color 5 */
+  }
+  85.68% {
+    background-color: #7E9CE2; /* Color 6 */
+  }
+  100% {
+    background-color: #E27EE2; /* Color 7 */
+  }
+    }
+  </style>
+</head>
+<body>
+  <h1>Ctrl LeaderBoard</h1>
+  <div class="user-container">
+    <% 
+      users.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      users.forEach((user, index) => { %>
+        <div class="user-card">
+          <span class="ranking">#<%= index + 1 %></span>
+        <% if (user.ctrl) { %>
+          <div class="profile-badge">Ctrl</div>
+        <% } %>
+          <img src="<%= user.avatar %>?size=1024" alt="User Image" class="user-image">
+          <h1 class="username"><%= user.global_name %></h1>
+          <p class="discriminator"><%= user.username %>#<%= user.discriminator %></p>
+          <p class="guilds"><%= user.guilds.length %> Servers!</p>
+        </div>
+    <% }); %>
+  </div>
+
+  <div class="footer">
+    &copy; Nandu 2023. All Rights Reserved.
+  </div>
+</body>
+    </html>
+  

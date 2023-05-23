@@ -34,3 +34,4 @@ In config.json
  *Step 6* - Go to the your / directory it will redirect you to the discord authorisation page. Authorise the application and see the magic!
  
  if you encounter any error feel free to create a issue here!
+# Ctrl-Website-OAuth2
