@@ -8,6 +8,7 @@ const user = require('./../models/user.js')
 const login_error = encodeURIComponent('You Need To Login First.');
 
 router.get('/', async function(req, res) {
+  var message = req.query.message;
   try {
     if (!req.user || !req.user.discordId) {
       return res.redirect(`/?message=${login_error}`);
@@ -23,7 +24,7 @@ router.get('/', async function(req, res) {
     const userData = exist.toObject();
 
     // Pass the userData to the `home.ejs` template
-    res.render('/home/runner/Discord-Oauth2-Login-With-Passport/public/home.ejs', { userData });
+    res.render(`${__dirname}/../views/home.ejs`, { userData, message });
 
   } catch (err) {
     console.log(err);
@@ -38,16 +39,7 @@ router.get('/data', (req, res) => {
   if (req.user) {
     res.send('Data Deletion Is Not Supported Yet Sorry. It Would Be Added Soon. Sorry For The Inconvenience. This Project is Open Source, If You Want It To Speed It Up. Come In With A Pull Request.')
   } else {
-    res.rediret(`/${encodeURIComponent('You Need To Login First.')}`)
-  }
-});
-
-
-router.get('/data', (req, res) => {
-  if (req.user) {
-    res.sendFile(`/home/runner/Discord-Oauth2-Login-With-Passport/public/home.html`)
-  } else {
-    res.redirect(`/?message=${login_error}`)
+    res.rediret(`/?message=${login_error}`)
   }
 });
 
@@ -56,7 +48,7 @@ router.get('/leaderboard', async (req, res) => {
   if (!req.user) { res.redirect(`/?message=${login_error}`); };
   try {
     const users = await user.find();
-    res.render(`/home/runner/Discord-Oauth2-Login-With-Passport/public/board.ejs`, { users })
+    res.render(`${__dirname}/../views/board.ejs`, { users   })
   } catch (err) {
     console.log(err)
     res.send('error occurred contact Website Admin')

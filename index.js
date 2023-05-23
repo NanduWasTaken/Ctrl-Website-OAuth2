@@ -27,7 +27,6 @@ app.use(session({
 // Session and Initialize
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static('public'));
 app.use(cookieParser());
 
 app.set('view engine', 'ejs');
@@ -40,15 +39,15 @@ app.use("/api", auth1);
 app.get('/', function(req, res) {
   var message = req.query.message;
   if (!req.user) {
-    res.render('/home/runner/Discord-Oauth2-Login-With-Passport/public/index.ejs', { message: message, login: false });
+    res.render(__dirname + '/views/index.ejs', { message: message, login: false });
   } else {
-    res.render('/home/runner/Discord-Oauth2-Login-With-Passport/public/index.ejs', { message: message, login: true });
+    res.render(__dirname + '/views/index.ejs', { message: message, login: true });
   }    
 });
 
 
 app.use((req, res, next) => {
-  res.status(404).sendFile('/home/runner/Discord-Oauth2-Login-With-Passport/public/404.html');
+  res.status(404).sendFile(__dirname + '/views/404.html');
 });
 
 // Discord Strategy
